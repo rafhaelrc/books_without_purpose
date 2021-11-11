@@ -5,19 +5,24 @@
    November 04, 2021 - 14:34:24
 */
 
-defaultTasks 'run'
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id "java" 
+    id "eclipse"
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
+defaultTasks 'run'
 
 version '1.0'
 group   'org.jacamo'
+
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(15)
     }
 }
+
 
 repositories {
     maven { url "https://raw.githubusercontent.com/jacamo-lang/mvn-repo/master" }
@@ -26,6 +31,7 @@ repositories {
 }
 
 dependencies {
+	//classpath group: 'commons-codec', name: 'commons-codec', version: '1.2'
     implementation ('org.jacamo:jacamo:1.1-SNAPSHOT')
 }
 
@@ -42,17 +48,61 @@ sourceSets {
         }
     }
 }
-
+//task run (type: JavaExec, dependsOn: 'classes') {
 task run (type: JavaExec, dependsOn: 'classes') {
-    group       ' JaCaMo'
+  	group       ' JaCaMo'
     description 'runs the JaCaMo application'
     doFirst {
-        mkdir 'log'
+       mkdir 'log'
     }
-    main 'jacamo.infra.JaCaMoLauncher'
+    mainClass = 'jacamo.infra.JaCaMoLauncher'
+    //args 'books_without_purpose.jcm'
     args 'books_without_purpose.jcm'
     classpath sourceSets.main.runtimeClasspath
 }
+
+
+task imprimi(){
+ 	println  "Root project:   ${project.rootProject}";
+ }
+
+task uberJar(type: Jar, dependsOn: 'classes') {
+    group      ' JaCaMo'
+    description 'creates a single runnable jar file with all dependencies'
+	duplicatesStrategy 'exclude'
+
+    manifest {
+        attributes 'Main-Class': 'jacamo.infra.JaCaMoLauncher'
+    }
+    baseName = 'jacamo-books' // the name must start with jacamo so that jacamo...jar is found in the classpath
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    from (project.projectDir.absolutePath) {
+        include '**/*.asl'
+        include '**/*.xml'
+        include '**/*.jcm'
+        include '*.properties'
+        include '**/*.sai'
+        include 'src/org/sai_specifications/*.sai'
+    }
+    
+    from (project.buildDir.absolutePath + '/jcm') {
+        include '**/*'
+    }
+    
+    with jar
+
+    doFirst {
+        copy {
+            from 'books_without_purpose.jcm'
+            rename 'books_without_purpose.jcm','default.jcm'
+            into project.buildDir.absolutePath + '/jcm'
+        }
+    }
+}
+
+
+
+
 
 clean {
     delete 'bin'

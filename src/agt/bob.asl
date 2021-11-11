@@ -1,6 +1,6 @@
 //{ include("common.asl") }
 
-//scenario(bookStore).
+scenario(bookStore).
 action(bookStore, pay).
 consequenceAction(bookStore, pay, holdBook).
 expectedConsequence(holdBook). 
@@ -14,7 +14,7 @@ consequenceAction(library, rent, holdBook).
 action(hostel, replace).
 consequenceAction(hostel, replace, holdBook).
 
-scenario(friendHouse). 
+//scenario(friendHouse). 
 action(friendHouse, donation).
 consequenceAction(friendHouse, donation, holdBook).
  

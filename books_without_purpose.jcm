@@ -37,7 +37,7 @@ mas books_without_purpose {
     }
     
     
-   	institution bh_bookStore:sai_specifications/constitutive-bookStore-book.sai{
+   	institution bh_bookStore:constitutive-bookStore-book.sai{
       // workspaces: wsp_library, wsp_bookStore
    	}
    	

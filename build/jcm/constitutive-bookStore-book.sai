@@ -1,0 +1,16 @@
+institution_id : bhInst.
+
+
+status_functions:
+
+agents: buyer.
+
+events: pay
+
+
+constitutive_rules:
+
+1: bob count-as buyer.
+
+2: transfer count-as pay.
+

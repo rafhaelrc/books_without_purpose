@@ -3,12 +3,16 @@ package tools;
 import cartago.Artifact;
 import cartago.OPERATION;
 
+
+
 public class ElectronicMachine extends Artifact{
+	
 	
 	@OPERATION
 	public void init() {
 		defineObsProperty("task", 0);
 	}
+	
 	
 	@OPERATION
 	public void transfer() {
