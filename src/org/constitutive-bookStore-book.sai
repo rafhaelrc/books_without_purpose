@@ -5,7 +5,7 @@ status_functions:
 
 agents: buyer.
 
-events: pay
+events: pay.
 
 
 constitutive_rules:

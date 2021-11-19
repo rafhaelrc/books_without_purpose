@@ -15,49 +15,45 @@
 mas books_without_purpose {
 
     agent bob{
+    // colocar aqui o cenário em que Bob está.
 		//join : wsp_library
 		//focus: wsp_library.electronic_machine
-		
+
     }
-    
+	/*
      workspace wsp_bookStore{
-    	artifact electronicMachine: tools.ElectronicMachine()	
+    	artifact electronicMachine: tools.ElectronicMachine()
     }
     
     workspace wsp_library{
     	artifact electronicMachine: tools.ElectronicMachine()
-    } 
-    
+    }
+
      workspace wsp_hostel{
     	artifact electronicMachine: tools.ElectronicMachine()
-    } 
-    
+    }
+
     workspace wsp_friendHouse{
     	artifact electronicMachine: tools.ElectronicMachine()
     }
-    
-    
+    */
+
    	institution bh_bookStore:constitutive-bookStore-book.sai{
       // workspaces: wsp_library, wsp_bookStore
    	}
-   	
-   	
+
+    
    	institution bh_library:sai_specifications/constitutive-library-book.sai{
       // workspaces: wsp_library
-   	} 
-   	
+   	}
+	
    	institution bh_hostel:sai_specifications/constitutive-hostel-book.sai{
       // workspaces: wsp_library
-   	} 
-   	
-   	
+   	}
+
+
    	institution bh_friendHouse:sai_specifications/constitutive-friendHouse-book.sai{
       // workspaces: wsp_library
-   	} 
-   	
-   	
-   	
-   	
-
+   	}
+    
 }
-
