@@ -38,6 +38,8 @@ mas books_without_purpose {
     }
     */
 
+	/*
+	
    	institution bh_bookStore:constitutive-bookStore-book.sai{
       // workspaces: wsp_library, wsp_bookStore
    	}
@@ -55,5 +57,5 @@ mas books_without_purpose {
    	institution bh_friendHouse:sai_specifications/constitutive-friendHouse-book.sai{
       // workspaces: wsp_library
    	}
-    
+     */
 }

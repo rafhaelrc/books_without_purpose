@@ -6,7 +6,6 @@
 */
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.1.0'
     id "java" 
     id "eclipse"
 }
@@ -25,13 +24,19 @@ java {
 
 
 repositories {
+    mavenCentral()
     maven { url "https://raw.githubusercontent.com/jacamo-lang/mvn-repo/master" }
     maven { url "https://repo.gradle.org/gradle/libs-releases-local" }
-    mavenCentral()
+    //maven { url 'https://jitpack.io' }
+    
+    flatDir {
+       dirs 'lib'
+    }
 }
 
 dependencies {
 	//classpath group: 'commons-codec', name: 'commons-codec', version: '1.2'
+	//implementation 'com.github.artificial-institutions:sai:master-SNAPSHOT'
     implementation ('org.jacamo:jacamo:1.1-SNAPSHOT')
 }
 
@@ -60,11 +65,6 @@ task run (type: JavaExec, dependsOn: 'classes') {
     args 'books_without_purpose.jcm'
     classpath sourceSets.main.runtimeClasspath
 }
-
-
-task imprimi(){
- 	println  "Root project:   ${project.rootProject}";
- }
 
 task uberJar(type: Jar, dependsOn: 'classes') {
     group      ' JaCaMo'
@@ -99,9 +99,6 @@ task uberJar(type: Jar, dependsOn: 'classes') {
         }
     }
 }
-
-
-
 
 
 clean {

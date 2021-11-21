@@ -10,27 +10,27 @@ expectedConsequence(holdBook).
 scenario_action_consequence(friendHouse,donation,holdBook).
 
 
-!prepareScenario.
+!setup_scenario.
 !holdBook.
 
 +! holdBook
 	<-
-	  .wait(100);
-		?scenario_action_consequence(Scenario, InstitutionalAction, Consequence);
-    println("Scenario: " , Scenario);
-    println("Institutional Action: ", InstitutionalAction);
+	  .wait(5000);
+	  ?scenario_action_consequence(Scenario, InstitutionalAction, Consequence);
+      println("Scenario: " , Scenario);
+      println("Institutional Action: ", InstitutionalAction);
 
-		?constitutive_rule(ConcreteAction, InstitutionalAction,_,_);
-		println("Concrete Action: ", ConcreteAction);
-    println("Action consequency: ", Consequence);
+	  ?constitutive_rule(ConcreteAction, InstitutionalAction,_,_);
+	  println("Concrete Action: ", ConcreteAction);
+      println("Action consequency: ", Consequence);
 
-   if(expectedConsequence(EC) & Consequence == EC){
-		 ConcreteAction;
-   }
-    println;
-    println("*** Final Phase ***");
-		.
-
+      if(expectedConsequence(EC) & Consequence == EC){
+		  ConcreteAction;
+      }
+      println;
+      println("*** Final Phase ***");
+	  .
+ 
 
 
 { include("$jacamoJar/templates/common-cartago.asl") }
