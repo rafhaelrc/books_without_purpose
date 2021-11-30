@@ -1,16 +1,22 @@
-institution_id : bhInst.
+/* ** Book Store 
+ Institutional Specification ** */
 
+institution_id : bhInst.
 
 status_functions:
 
-agents: buyer.
-
 events: pay.
-
 
 constitutive_rules:
 
-1: bob count-as buyer.
+1: transfer count-as pay.
 
-2: transfer count-as pay.
 
+
+ /* , rent, donation, replace. */
+ 
+ 
+ /*2: transfer count-as rent.
+3: transfer count-as donation.
+4: transfer count-as replace.
+*/

@@ -15,16 +15,27 @@
 mas books_without_purpose {
 
     agent bob{
-    // colocar aqui o cenário em que Bob está.
-		//join : wsp_library
-		//focus: wsp_library.electronic_machine
+    /* things that the agents need to know */
+     beliefs: scenario_action_consequence(bookStore,pay,holdBook)
+	//scenario_action_consequence(bookStore,pay,holdBook).
+	//scenario_action_consequence(library,rent,holdBook).
+	//scenario_action_consequence(hostel,replace,holdBook).
+	//scenario_action_consequence(friendHouse,donation,holdBook).
+
+	/* parameters to set up the workspaces and institution. */
+	beliefs: nameWorkspace("/main/wsp_bookStore"), 
+			 nameArtifact("electronicMachine"),
+			 nameInstitutionalWorkspace("/main/bh_bookStore"),
+			 nameInstitutionalArtifact("bh_bookStore_art"),
+			 nameInstitutionalSpecification("src/org/sai_specifications/constitutive-bookStore-book.sai")
+
 
     }
 	/*
      workspace wsp_bookStore{
     	artifact electronicMachine: tools.ElectronicMachine()
     }
-    
+
     workspace wsp_library{
     	artifact electronicMachine: tools.ElectronicMachine()
     }
@@ -39,16 +50,16 @@ mas books_without_purpose {
     */
 
 	/*
-	
+
    	institution bh_bookStore:constitutive-bookStore-book.sai{
       // workspaces: wsp_library, wsp_bookStore
    	}
 
-    
+
    	institution bh_library:sai_specifications/constitutive-library-book.sai{
       // workspaces: wsp_library
    	}
-	
+
    	institution bh_hostel:sai_specifications/constitutive-hostel-book.sai{
       // workspaces: wsp_library
    	}
